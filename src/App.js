@@ -33,8 +33,9 @@ function App() {
 
   // renders
   const denElements = dens.map((den, index) => {
+    // console.log(den)
     return (
-      <Mole key={`mole-${index}`} />
+      <Mole key={`mole-${index}`} visibility={den.isMoleVisible} />
     )
   })
 
