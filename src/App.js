@@ -12,6 +12,7 @@ function App() {
     startGame()
   }, [])
 
+  // sets timer for populating moles
   // helpers
   function startGame() {
     setInterval(() => {
@@ -19,6 +20,7 @@ function App() {
     }, 1500)
   }
 
+  //randomize visibility of moles
   function getDensState() {
     return new Array(9).fill({}).map(() => {
       return { 
@@ -27,18 +29,21 @@ function App() {
     })
   }
 
-  function onMoleWhacked() {
+  // when mole is clicked, points += 1
+  const onMoleWhacked = () => {
     setPoints(points + 1)
   }
 
+  // returns nine moles, defined by visibility based on Mole.js
   // renders
   const denElements = dens.map((den, index) => {
     // console.log(den)
     return (
-      <Mole key={`mole-${index}`} visibility={den.isMoleVisible} />
+      <Mole key={`mole-${index}`} visibility={den.isMoleVisible} function={onMoleWhacked} />
     )
   })
 
+  // returns full game
   return (
     <div className="App">
       <h1>WHACK-A-MOLE!</h1>
